@@ -14,10 +14,43 @@
 
 .timer {
 	flex: 1;
-	background-color: orange;
+	background-color: #676767;
+}
+
+/* scramble on the top */
+.scramble-container {
+	padding: 10px 0;
+	background-color: #333333;
+}
+.scramble {
+	color: #CDCDCD;
+	font-size: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* timer, average, best time */
+.timer-container {
+	position: relative;
+	top: 30%;
+	transform: translateY(-50%);
+}
+.time {
+	color: #CDCDCD;
+	font-size: min(10vw, 100px);
+	text-align: center;
+}
+.important-stat {
+	color: #CDCDCD;
+	font-size: min(3vw, 30px);
+	text-align: center;
 }
 
 .stats {
 	width: 200px;
 	background-color: blue;
+}
+
+#upload {
+	display: none;
 }
