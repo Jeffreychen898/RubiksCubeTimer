@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	cursor: default;
 }
 
 .parent-container {
@@ -47,10 +48,68 @@
 }
 
 .stats {
+	position: relative;
 	width: 200px;
-	background-color: blue;
+	background-color: #454545;
 }
 
 #upload {
 	display: none;
 }
+.upload-label {
+	cursor: pointer;
+}
+.upload-btn {
+	margin: auto;
+	margin-top: 20px;
+	width: 100px;
+	height: 30px;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	vertical-align: middle;
+	cursor: pointer;
+	background-color: orange;
+}
+.file-name {
+	margin: 5px 0;
+	color: #CDCDCD;
+	text-align: center;
+}
+
+.averages {
+	margin: 20px 0;
+}
+.averages p {
+	margin: 5px 0;
+	color: #CDCDCD;
+	text-align: center;
+}
+.averages p span {
+	color: yellow;
+}
+
+.solve-times {
+	text-align: center;
+}
+.solve-times p {
+	color: #CDCDCD;
+}
+.each-solve {
+	margin: auto;
+	height: 30px;
+	color: #CDCDCD;
+	line-height: 30px;
+	vertical-align: middle;
+	list-style-type: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+.each-solve:hover {
+	background-color: #CDCDCD;
+	color: #454545;
+}
+
+
+
+

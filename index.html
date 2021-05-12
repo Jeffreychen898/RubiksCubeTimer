@@ -3,12 +3,15 @@
 	<head>
 		<title>Rubik's Cube Timer</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<script src="javascript/dom.js"></script>
+		<script src="javascript/scramble.js"></script>
 	</head>
 	<body>
 		<div class="parent-container">
 			<div class="timer container">
 				<div class="scramble-container">
-					<p class="scramble">R U R' U'</p>
+					<p class="scramble" id="scramble" onclick="newScramble(this)">Loading . . .</p>
 				</div>
 				<div class="timer-container">
 					<h1 class="time">00:00.00</h1>
@@ -18,7 +21,30 @@
 			</div>
 
 			<div class="stats container">
+				<input type="file" id="upload" accept="application/json">
+				<label class="upload-label" for="upload">
+					<div class="upload-btn">Upload</div>
+					<p class="file-name">Hello.json</p>
+				</label>
+
+				<div class="averages">
+					<p>Avg 12: <span>19.16</span></p>
+					<p>Avg 5: <span>18.36</span></p>
+					<p>Best Solve: <span>11.37</span></p>
+					<p>Best Avg: <span>14.37</span></p>
+				</div>
+
+				<div class="solve-times">
+					<p>Solve Times</p>
+					<ul>
+						<li class="each-solve">00:00.00</li>
+						<li class="each-solve">00:00.00</li>
+						<li class="each-solve">00:00.00</li>
+						<li class="each-solve">00:00.00</li>
+					</ul>
+				</div>
 			</div>
 		</div>
+		<script src="javascript/main.js"></script>
 	</body>
 </html>
