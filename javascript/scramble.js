@@ -19,10 +19,10 @@ function generateScramble() {
 		previous = move;
 
 		let character = rotations[move];
-		const prefix = Math.random();
-		if(prefix < 0.33)
+		const suffix = Math.random();
+		if(suffix < 0.33)
 			character += "'";
-		else if(prefix < 0.66)
+		else if(suffix < 0.66)
 			character += "2";
 
 		result.push(character);
