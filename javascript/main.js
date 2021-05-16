@@ -1,4 +1,23 @@
-const WAIT_TIME = 400;
+const CONSTANTS = {
+	ELEMENTS: {
+		SCRAMBLE: $("scramble"),
+		TIMER: $("timer")
+	},
+	PROPERTIES: {
+		TIMER: {
+			WAIT_TIME: 400,
+			COLORS: {
+				STOP: "#CDCDCD",
+				WAIT: "#FF0000",
+				RUN: "#00FF00"
+			}
+		},
+		SCRAMBLE: {
+			MOVES: 20
+		}
+	}
+}
+
 const scramble_element = $("scramble");
 const timer_element = $("timer");
 
@@ -6,7 +25,7 @@ let wait = new Timer();
 let timer = new Timer();
 
 function setup() {
-	scramble_element.innerHTML = generateScramble().join(" ");
+	CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
 }
 
 function keyPressed() {
@@ -14,42 +33,48 @@ function keyPressed() {
 		stopTimer();
 	else if(!wait.started) {
 		wait.start();
-		timer_element.style.color = "red";
+		CONSTANTS.ELEMENTS.TIMER.style.color = CONSTANTS.PROPERTIES.TIMER.COLORS.WAIT;
 		runAnimation();
 	}
 }
 
 function keyReleased() {
 	if(!timer.started) {
-		if(wait.getTime() > WAIT_TIME) {
+		if(wait.getTime() > CONSTANTS.PROPERTIES.TIMER.WAIT_TIME) {
 			timer.start();
 			wait.reset();
 			startTimer();
 		} else {
 			wait.reset();
-			timer_element.style.color = "#CDCDCD";
+			CONSTANTS.ELEMENTS.TIMER.style.color = CONSTANTS.PROPERTIES.TIMER.COLORS.STOP;
 		}
 	}
 }
 
 function runAnimation() {
-	if(wait.getTime() > WAIT_TIME) {
-		timer_element.style.color = "#00FF00";
+	if(wait.getTime() > CONSTANTS.PROPERTIES.TIMER.WAIT_TIME) {
+		CONSTANTS.ELEMENTS.TIMER.style.color = CONSTANTS.PROPERTIES.TIMER.COLORS.RUN;
 	}
 	if(timer.started) {
-		timer_element.innerHTML = readableTime(timer.getTime());
+		CONSTANTS.ELEMENTS.TIMER.innerHTML = readableTime(timer.getTime());
 	}
 	if(wait.started || timer.started)
 		requestAnimationFrame(runAnimation);
 }
 
 function startTimer() {
-	timer_element.style.color = "#00FF00";
+	CONSTANTS.ELEMENTS.TIMER.style.color = CONSTANTS.PROPERTIES.TIMER.COLORS.RUN;
 }
 
 function stopTimer() {
+	recordSolve(readableTime(timer.getTime()));
 	timer.reset();
-	scramble_element.innerHTML = generateScramble().join(" ");
+	CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
+}
+
+function recordSolve(solveTime) {
+	const parent_element = $("solve-container");
+	parent_element.innerHTML += `<li class="each-solve">${solveTime}</li>`;
 }
 
 function readableTime(millis) {
@@ -64,7 +89,7 @@ function readableTime(millis) {
 
 /* element events */
 function newScramble(element) {
-	element.innerHTML = generateScramble().join(" ");
+	element.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
 }
 
 window.onload = () => {

@@ -1,11 +1,10 @@
-const SCRAMBLE_MOVES = 20;
-function generateScramble() {
+function generateScramble(moves) {
 	const rotations = "UDLRFB";
 
 	let result = [];
 	let previous = -1;
 
-	for(let i=0;i<SCRAMBLE_MOVES;i++) {
+	for(let i=0;i<moves;i++) {
 		let move;
 		if(i == 0)
 			move = Math.floor(Math.random() * rotations.length);
