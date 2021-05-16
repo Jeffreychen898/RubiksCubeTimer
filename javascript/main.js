@@ -22,7 +22,10 @@ const scramble_element = $("scramble");
 const timer_element = $("timer");
 
 let wait = new Timer();
+let timer_millis = 0;
 let timer = new Timer();
+
+let solve_record = [];
 
 function setup() {
 	CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
@@ -52,12 +55,14 @@ function keyReleased() {
 }
 
 function runAnimation() {
-	if(wait.getTime() > CONSTANTS.PROPERTIES.TIMER.WAIT_TIME) {
+	if(wait.getTime() > CONSTANTS.PROPERTIES.TIMER.WAIT_TIME)
 		CONSTANTS.ELEMENTS.TIMER.style.color = CONSTANTS.PROPERTIES.TIMER.COLORS.RUN;
-	}
+
 	if(timer.started) {
 		CONSTANTS.ELEMENTS.TIMER.innerHTML = readableTime(timer.getTime());
+		timer_millis = timer.getTime();
 	}
+
 	if(wait.started || timer.started)
 		requestAnimationFrame(runAnimation);
 }
@@ -67,14 +72,15 @@ function startTimer() {
 }
 
 function stopTimer() {
-	recordSolve(readableTime(timer.getTime()));
+	recordSolve();
 	timer.reset();
 	CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
 }
 
-function recordSolve(solveTime) {
+function recordSolve() {
 	const parent_element = $("solve-container");
-	parent_element.innerHTML += `<li class="each-solve">${solveTime}</li>`;
+	parent_element.innerHTML += `<li class="each-solve">${readableTime(timer_millis)}</li>`;
+	solve_record.push({ time: timer_millis, scramble: CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML });
 }
 
 function readableTime(millis) {
