@@ -4,6 +4,9 @@
 	box-sizing: border-box;
 	cursor: default;
 }
+button {
+	cursor: pointer;
+}
 
 .parent-container {
 	display: flex;
@@ -87,7 +90,7 @@
 	text-align: center;
 }
 .averages p span {
-	color: yellow;
+	color: orange;
 }
 
 .solve-times {
@@ -109,6 +112,56 @@
 .each-solve:hover {
 	background-color: #CDCDCD;
 	color: #454545;
+}
+
+/* popups */
+#timer-information {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #00000088;
+	display: block;
+}
+#timer-information .content-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	border-top: 5px solid orange;
+	transform: translate(-50%, -50%);
+	background-color: white;
+}
+#timer-information .content-container p {
+	text-align: center;
+	margin: 0 10px;
+}
+#timer-information .content-container #record-scramble {
+	font-size: 20px;
+	color: #888888;
+}
+#timer-information .content-container #record-time {
+	margin-top: 10px;
+	font-size: 25px;
+}
+#timer-information .content-container .button-container {
+	display: flex;
+}
+#timer-information .content-container .button-container .timer-info-btn {
+	flex: 1;
+	margin: 10px 15px;
+	width: 100px;
+	height: 40px;
+	border: none;
+	font-size: 15px;
+	color: white;
+}
+#timer-information .content-container .button-container .timer-info-close {
+	background-color: orange;
+}
+#timer-information .content-container .button-container .remove-time {
+	background-color: red;
 }
 
 

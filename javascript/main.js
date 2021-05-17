@@ -18,6 +18,7 @@ const CONSTANTS = {
 	}
 }
 
+const htmlHelper = new HTMLHelper();
 const countup = new CountUp();
 
 function setup() {
@@ -32,11 +33,6 @@ function keyPressed(event) {
 function keyReleased() {
 	if(event.keyCode == 32)
 		countup.keyReleased();
-}
-
-/* element events */
-function newScramble(element) {
-	element.innerHTML = generateScramble(CONSTANTS.PROPERTIES.SCRAMBLE.MOVES).join(" ");
 }
 
 window.onload = () => {

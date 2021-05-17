@@ -68,8 +68,13 @@ class CountUp {
 	}
 
 	recordSolve() {
+		const new_element = `
+		<li class="each-solve" onclick="displaySolve(this)" data-index=${this.solves_record.length}>
+		${this.readableTime(this.countup_timer)}
+		</li>`;
+
 		const parent_element = $("solve-container");
-		parent_element.innerHTML += `<li class="each-solve">${this.readableTime(this.countup_timer)}</li>`;
+		parent_element.innerHTML = new_element + parent_element.innerHTML;
 		this.solves_record.push({
 			time: this.countup_timer,
 			scramble: CONSTANTS.ELEMENTS.SCRAMBLE.innerHTML

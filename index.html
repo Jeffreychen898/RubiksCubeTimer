@@ -38,8 +38,17 @@
 				<div class="solve-times">
 					<p>Solve Times</p>
 					<ul id="solve-container">
-						<!--<li class="each-solve">00:00.00</li>-->
 					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="timer-information" data-time="-1">
+			<div class="content-container">
+				<p id="record-time">Time: Invalid</p>
+				<p id="record-scramble">Invalid</p>
+				<div class="button-container">
+					<button class="timer-info-btn timer-info-close popup-close" data-target="timer-information">Close</button>
+					<button class="timer-info-btn remove-time popup-close" data-target="timer-information" onclick="removeTime()">Delete</button>
 				</div>
 			</div>
 		</div>
