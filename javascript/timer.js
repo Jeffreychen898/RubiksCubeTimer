@@ -105,3 +105,40 @@ class Timer {
 		this.started_time = new Date().getTime();
 	}
 }
+
+function average(amount, record) {
+	let outlier = {
+		max: undefined,
+		min: undefined
+	};
+	let list = [];
+	for(let i=record.length - 1;i>=0;i--) {
+		if(record[i]) {
+			if(outlier.max) {
+				if(record[i] > outlier.max)
+					outlier.max = record[i];
+			} else
+				outlier.max = record[i];
+
+			if(outlier.min) {
+				if(record[i] < outlier.min)
+					outlier.min = record[i];
+			} else
+				outlier.min = record[i];
+
+			list.push(record[i]);
+			if(list.length == amount)
+				break;
+		}
+	}
+	if(list.length == amount) {
+		let sum = 0;
+		for(let i=0;i<list.length;i++) {
+			if(list[i] != outlier.max && list[i] != outlier.min)
+				sum += list[i];
+		}
+		return sum / (amount - 2);
+	}
+
+	return undefined;
+}
